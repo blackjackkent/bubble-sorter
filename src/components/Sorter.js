@@ -1,21 +1,29 @@
 import React, {useState} from 'react';
 
 function Sorter(props) {
-	const { data } = props;
+	const { data, onFinished } = props;
 	const length = data.length;
-	let swapped = false;
-	do {
-		swapped = false;
-		for (let i = 0; i < length; i++) {
-			//const shouldSwap = confirm(`Is ${data[i + 1]} better than ${data[i]}?`);
-			if (data[i] > data[i + 1]) {
-				let tmp = data[i];
-				data[i] = data[i + 1];
-				data[i + 1] = tmp;
-				swapped = true;
-			}
+	const [swapped, setSwapped] = useState(false)
+	const [i, setI] = useState(0);
+	const onSubmit = () => {
+		if (data[i] > data[i + 1]) {
+			console.log(`Swapping ${data[i]} and ${data[i + 1]}.`)
+			let tmp = data[i];
+			data[i] = data[i + 1];
+			data[i + 1] = tmp;
+			setSwapped(true);
+		} else {
+			console.log(`Not swapping ${data[i]} and ${data[i + 1]}`)
 		}
-	} while (swapped);
+		if (i === length - 2 && !swapped) {
+			onFinished();
+		} else if (i === length - 2) {
+			setI(0);
+			setSwapped(false);
+		} else {
+			setI(i + 1);
+		}
+	}
 	let items = data.map(d => <li key={d}>{d}</li>);
 	return (
 		<div>
@@ -23,7 +31,7 @@ function Sorter(props) {
 			<ul>
 				{items}
 			</ul>
-
+			<button type="button" onClick={onSubmit}>Sort</button>
 		</div>
 	);
 }
