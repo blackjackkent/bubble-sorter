@@ -7,7 +7,7 @@ function Sorter(props) {
 	const [i, setI] = useState(0);
 	const onSubmit = (shouldSwap) => {
 		if (shouldSwap) {
-			console.log(`Swapping ${data[i]} and ${data[i + 1]}.`)
+			console.log(`Swapping ${data[i]} and ${data[i + 1]}.`);
 			let tmp = data[i];
 			data[i] = data[i + 1];
 			data[i + 1] = tmp;
@@ -24,17 +24,15 @@ function Sorter(props) {
 			setI(i + 1);
 		}
 	}
-	let items = data.map(d => <li key={d}>{d}</li>);
 	return (
-		<div>
-			{/* Sorted list is:
-			<ul>
-				{items}
-			</ul> */}
-			Choose between
-			<button type="button" onClick={() => onSubmit(false)}>{data[i]}</button>
-			and
-			<button type="button" onClick={() => onSubmit(true)}>{data[i + 1]}</button>
+		<div className="sorter">
+			<p>
+				Choose between
+				<button className="button" type="button" onClick={() => onSubmit(false)}>{data[i]}</button>
+				and
+				<button className="button" type="button" onClick={() => onSubmit(true)}>{data[i + 1]}</button>
+				.
+			</p>
 		</div>
 	);
 }

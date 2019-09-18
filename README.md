@@ -1,3 +1,5 @@
+Small web-app to assist users in sorting a list of items by preference using a bubble-sort methodology.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
