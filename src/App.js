@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Entry from './components/Entry';
+import Sorter from './components/Sorter';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [list, setList] = useState([]);
+	const onListCreate = (listText) => {
+		const values = listText.replace(/\r\n/g, "\n").split("\n");
+		console.log(values);
+		setList(values);
+	}
+	if (list.length === 0) {
+		return <Entry onListCreate={onListCreate} />
+	}
+	return (
+		<Sorter data={list} />
+	);
 }
 
 export default App;
