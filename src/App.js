@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import Entry from './components/Entry';
 import Sorter from './components/Sorter';
 import Finished from './components/Finished';
+import Cache from './utility/Cache';
 import './App.css';
 
 function App() {
 	const [list, setList] = useState([]);
 	const [finished, setFinished] = useState(false);
+	const cache = new Cache();
 	const onListCreate = (listText) => {
 		if (listText === '') {
 			return;
@@ -28,7 +30,7 @@ function App() {
 	} else {
 		return (
 			<div className="container">
-				<Sorter onFinished={onFinished} data={list} />
+				<Sorter onFinished={onFinished} data={list} cache={cache} />
 			</div>
 		);
 	}
