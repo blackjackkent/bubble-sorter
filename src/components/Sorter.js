@@ -5,8 +5,8 @@ function Sorter(props) {
 	const length = data.length;
 	const [swapped, setSwapped] = useState(false)
 	const [i, setI] = useState(0);
-	const onSubmit = () => {
-		if (data[i] > data[i + 1]) {
+	const onSubmit = (shouldSwap) => {
+		if (shouldSwap) {
 			console.log(`Swapping ${data[i]} and ${data[i + 1]}.`)
 			let tmp = data[i];
 			data[i] = data[i + 1];
@@ -27,11 +27,14 @@ function Sorter(props) {
 	let items = data.map(d => <li key={d}>{d}</li>);
 	return (
 		<div>
-			Sorted list is:
+			{/* Sorted list is:
 			<ul>
 				{items}
-			</ul>
-			<button type="button" onClick={onSubmit}>Sort</button>
+			</ul> */}
+			Choose between
+			<button type="button" onClick={() => onSubmit(false)}>{data[i]}</button>
+			and
+			<button type="button" onClick={() => onSubmit(true)}>{data[i + 1]}</button>
 		</div>
 	);
 }

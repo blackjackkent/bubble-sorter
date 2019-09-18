@@ -1,7 +1,13 @@
 import React from 'react';
 
-function App() {
-	return <div>Finished!</div>;
+const Finished = (props) => {
+	const items = props.data.map(i => <li key={i}>{i}</li>);
+	return <div>
+		Sorted List:
+		<ul>
+			{items}
+		</ul>
+	</div>;
 }
 
-export default App;
+export default Finished;

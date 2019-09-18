@@ -15,7 +15,7 @@ function App() {
 		setFinished(true);
 	}
 	if (finished) {
-		return <Finished />
+		return <Finished data={list} />
 	} else if (list.length === 0 && !finished) {
 		return <Entry onListCreate={onListCreate} />
 	} else {
